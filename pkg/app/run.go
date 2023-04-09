@@ -21,7 +21,6 @@ func Run() {
 			http.FileServer(http.Dir("static")))) 
 	
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-
 		if name := r.FormValue("name"); name != "" {
 			welcome.Name = name
 		}
@@ -30,6 +29,7 @@ func Run() {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 	})
+	
 	log.Println("Serving on port 8080")
 	fmt.Println(http.ListenAndServe(":8080", nil))
 }
